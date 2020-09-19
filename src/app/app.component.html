@@ -1,1 +1,15 @@
 <p>check the console!</p>
+<h1>Test Test</h1>
+<table>
+  <tr>
+    <th *ngFor = "let column of headers">
+      {{ column }}
+    </th>
+  </tr>
+
+  <tr *ngFor = "let row of rows">
+    <td *ngFor = "let column of headers">
+      {{ row[column] }}
+    </td>
+  </tr>
+</table>

@@ -10,6 +10,40 @@ import { ApiService } from '../app/services/api-service.service';
 export class AppComponent implements OnInit {
   title = 'fhir-app-test';
 
+  headers = ['ID' , 'name', 'gender', 'city', 'birthdate']
+
+  rows = [
+    {
+      'ID' : '1',
+      'name' : 'deb',
+      'age' : '28',
+      'gender' : 'female',
+      'city' : 'toronto',
+      'birthdate' : '1992/05/27'
+    },
+    {
+      'ID' : '1',
+      'name' : 'deb',
+      'age' : '28',
+      'gender' : 'female',
+      'city' : 'toronto'
+    },
+    {
+      'ID' : '1',
+      'name' : 'deb',
+      'age' : '28',
+      'gender' : 'female',
+      'city' : 'toronto'
+    },
+    {
+      'ID' : '1',
+      'name' : 'deb',
+      'age' : '28',
+      'gender' : 'female',
+      'city' : 'toronto'
+    }
+  ]
+
   constructor(
     private apiService: ApiService
   ) { }
