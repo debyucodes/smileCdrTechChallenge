@@ -22,7 +22,12 @@ export class AppComponent implements OnInit {
   printTime(time : number) {
     console.log(`Global loading ${ time }`);
     console.log(`Component loading ${ time - this.startTime}`)
+    this.globalLoading = time
+    this.componentLoading = time - this.startTime
   }
+
+  globalLoading : any = []
+  componentLoading: any = []
 
   constructor(
     private apiService: ApiService
@@ -46,16 +51,15 @@ export class AppComponent implements OnInit {
         // SORTING?
         // this.items.sort((a,b) => a.resource.birthDate.rendered.localeCompare(b.resource.birthDate.rendered));
         // console.log(this.items.sort);
-
-        // PERFORMANCE tIME?
-        this.apiService.getPerformance();
       }
       )
 
+      // Record Initialize Time
       this.initTime = window.performance.now()
       this.printTime(this.initTime)
     }
 
+    // Record Content Rendered Time
     ngAfterContentInit() {
       this.contentInitTime = window.performance.now()
       this.printTime(this.contentInitTime)
