@@ -1,5 +1,18 @@
 <p>check the console!</p>
 <h1>Test Test</h1>
+
+<form action="">
+  <label for="searchName">Search by name</label>
+  <input type="text" name="searchName" id="searchName" pattern="^[A-Za-z]" placeholder="ex. Jane Doe">
+</form>
+<button id="nameSubmit" type="submit" onclick="document.getElementById('nameSubmit').disabled = true;">Search!</button>
+
+<form action="">
+  <label for="searchDate">Search by date</label>
+  <input type="text" name="searchDate" id="searchDate" pattern="([12]\d{3}/(0[1-9]|1[0-2])/(0[1-9]|[12]\d|3[01]))" placeholder="YYYY/MM/DD">
+</form>
+<button id="dateSubmit" onclick="document.getElementById('dateSubmit').disabled = true;">Search!</button>
+
 <table>
   <tr>
     <th *ngFor = "let column of headers">
@@ -9,10 +22,12 @@
 
   <tr *ngFor = "let arr of items">
     <td>{{ arr.resource.id }}</td>
-    <td>{{ arr.resource.name[0].family }}</td>
+    <!-- <td>{{ arr.resource.name[0].family }}</td>
     <td>{{ arr.resource.name[0].given }}</td>
     <td>{{ arr.resource.gender }}</td>
-    <td>{{ arr.resource.birthDate }}</td>
+    <td>{{ arr.resource.birthDate }}</td> -->
+
+    <!-- when API doesnt return name, gender, DOB it crashes -->
   </tr>
 
 </table>

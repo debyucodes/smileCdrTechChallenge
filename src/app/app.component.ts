@@ -23,15 +23,15 @@ export class AppComponent implements OnInit {
       (data: any) => {
         console.log(data);
         this.items = data.entry;
-        console.log(typeof this.items)
+        console.log(typeof this.items);
 
         this.items.forEach(arr => {
-          console.log(arr);
+          console.log(arr.resource.id);
           return arr;
         })
       }
-    )
+      )
+    }
   }
-}
 
 
