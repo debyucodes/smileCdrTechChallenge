@@ -29,9 +29,16 @@ export class AppComponent implements OnInit {
           console.log(arr.resource.id);
           return arr;
         })
+
+        // this.items.sort((a,b) => a.resource.birthDate.rendered.localeCompare(b.resource.birthDate.rendered));
+        // console.log(this.items.sort);
       }
       )
     }
-  }
 
+    // function to sort the array
+    sortData() {
+      console.log('wtf');
+    }
 
+}

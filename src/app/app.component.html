@@ -22,12 +22,16 @@
 
   <tr *ngFor = "let arr of items">
     <td>{{ arr.resource.id }}</td>
-    <!-- <td>{{ arr.resource.name[0].family }}</td>
+    <td>{{ arr.resource.name[0].family }}</td>
     <td>{{ arr.resource.name[0].given }}</td>
     <td>{{ arr.resource.gender }}</td>
-    <td>{{ arr.resource.birthDate }}</td> -->
+    <td>{{ arr.resource.birthDate }}</td>
 
     <!-- when API doesnt return name, gender, DOB it crashes -->
   </tr>
 
 </table>
+
+<footer>
+  <h2>Request time: </h2>
+</footer>
