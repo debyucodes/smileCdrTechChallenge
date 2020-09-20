@@ -10,7 +10,7 @@ import { ApiService } from '../app/services/api-service.service';
 export class AppComponent implements OnInit {
   title = 'fhir-app-test';
 
-  headers = ['ID' , 'last name', 'first name', 'gender']
+  headers = ['ID' , 'last name', 'first name', 'gender', 'birthdate']
 
   items = []
 
