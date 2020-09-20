@@ -3,13 +3,14 @@
 
 <form action="">
   <label for="searchName">Search by name</label>
-  <input type="text" name="searchName" id="searchName" pattern="^[A-Za-z]" placeholder="ex. Jane Doe">
+  <input #box (keyup.enter)="onEnter(box.value)" type="text" name="searchName" id="searchName" pattern="^[A-Za-z]*$" placeholder="ex. Jane Doe">
+  <p>{{ value }}</p>
 </form>
 <button id="nameSubmit" type="submit" onclick="document.getElementById('nameSubmit').disabled = true;">Search!</button>
 
 <form action="">
   <label for="searchDate">Search by date</label>
-  <input type="text" name="searchDate" id="searchDate" pattern="([12]\d{3}/(0[1-9]|1[0-2])/(0[1-9]|[12]\d|3[01]))" placeholder="YYYY/MM/DD">
+  <input type="date" name="searchDate" id="searchDate" pattern="([12]\d{3}/(0[1-9]|1[0-2])/(0[1-9]|[12]\d|3[01]))" placeholder="YYYY/MM/DD">
 </form>
 <button id="dateSubmit" onclick="document.getElementById('dateSubmit').disabled = true;">Search!</button>
 
@@ -32,9 +33,10 @@
   </tr>
 </table>
 
+<!-- REMEMBER TO ADD PIPE FORMATTING! -->
 <footer>
   <h2>Global Loading Time: </h2>
   <p>{{ globalLoading / 1000 }}s</p>
-  <h2>Component Loading Time:</h2>
-  <p>{{ componentLoading / 1000}}s</p>
+  <h2>Request Loading Time:</h2>
+  <p>{{ requestLoading / 1000}}s</p>
 </footer>

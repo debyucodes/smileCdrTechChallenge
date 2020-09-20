@@ -22,6 +22,18 @@ export class ApiService {
     });
     return headers;
   }
+
+  userSearch(userInput: string) {
+    if (!userInput.trim()) {
+      return ([]);
+    }
+
+    return this.httpClient.get(environment.queryURI + '/Patient/?name=' + userInput)
+  }
+
+  birthdateSearch(userBirthDate) {
+    return this.httpClient.get(environment.queryURI + '/Patient/?birthdate=' + userBirthDate )
+  }
 }
 
 

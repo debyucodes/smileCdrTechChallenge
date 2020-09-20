@@ -5,14 +5,14 @@ import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class ApiService {
+export class ApiSearch {
 
   constructor(
     private httpClient: HttpClient
   ) { }
 
   getSearch() {
-    return this.httpClient.get(environment.queryURI + '/Patient' + '?search',
+    return this.httpClient.get(environment.queryURI + '/Patient' + '/_search',
       { headers: this.getHeaders() });
   }
 

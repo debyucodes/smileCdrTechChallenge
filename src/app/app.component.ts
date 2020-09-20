@@ -1,10 +1,11 @@
+import { ApiSearch } from '../app/services/search.service';
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../app/services/api-service.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 
 export class AppComponent implements OnInit {
@@ -21,16 +22,17 @@ export class AppComponent implements OnInit {
 
   printTime(time : number) {
     console.log(`Global loading ${ time }`);
-    console.log(`Component loading ${ time - this.startTime}`)
+    console.log(`Request loading ${ time - this.startTime}`)
     this.globalLoading = time
-    this.componentLoading = time - this.startTime
+    this.requestLoading = time - this.startTime
   }
 
   globalLoading : any = []
-  componentLoading: any = []
+  requestLoading: any = []
 
-  timer
-  counter: Date
+  value = ''
+  onEnter(value: string) {this.value = value}
+
 
   constructor(
     private apiService: ApiService
@@ -51,16 +53,21 @@ export class AppComponent implements OnInit {
           return arr;
         })
 
-        // SORTING?
-        // this.items.sort((a,b) => a.resource.birthDate.rendered.localeCompare(b.resource.birthDate.rendered));
-        // console.log(this.items.sort);
+        // SORTING BY ID
+        this.items.sort((a, b) => {
+          if (b.resource.id > a.resource.id) {
+            return 1
+          } else {
+            return -1
+          }
+        })
+
       }
       )
 
       // Record Initialize Time
       this.initTime = window.performance.now()
       this.printTime(this.initTime)
-
     }
 
     // Record Content Rendered Time
