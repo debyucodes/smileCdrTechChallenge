@@ -28,12 +28,13 @@
     <td>{{ arr.resource.birthDate }}</td>
 
     <!-- when API doesnt return name, gender, DOB it crashes -->
+    <!-- needs some kind of error handling -->
   </tr>
 </table>
 
 <footer>
   <h2>Global Loading Time: </h2>
-  <p>{{ globalLoading }}ms</p>
+  <p>{{ globalLoading / 1000 }}s</p>
   <h2>Component Loading Time:</h2>
-  <p>{{ componentLoading }}ms</p>
+  <p>{{ componentLoading / 1000}}s</p>
 </footer>

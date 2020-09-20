@@ -29,6 +29,9 @@ export class AppComponent implements OnInit {
   globalLoading : any = []
   componentLoading: any = []
 
+  timer
+  counter: Date
+
   constructor(
     private apiService: ApiService
   ) { 
@@ -57,6 +60,7 @@ export class AppComponent implements OnInit {
       // Record Initialize Time
       this.initTime = window.performance.now()
       this.printTime(this.initTime)
+
     }
 
     // Record Content Rendered Time
