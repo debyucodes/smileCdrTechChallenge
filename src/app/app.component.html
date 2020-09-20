@@ -7,9 +7,11 @@
     </th>
   </tr>
 
-  <tr *ngFor = "let row of rows">
-    <td *ngFor = "let column of headers">
-      {{ row[column] }}
-    </td>
+  <tr *ngFor = "let arr of items">
+    <td>{{ arr.resource.id }}</td>
+    <td>{{ arr.resource.name[0].family }}</td>
+    <td>{{ arr.resource.name[0].given }}</td>
+    <td>{{ arr.resource.gender }}</td>
   </tr>
+
 </table>

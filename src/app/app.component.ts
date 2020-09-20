@@ -10,39 +10,9 @@ import { ApiService } from '../app/services/api-service.service';
 export class AppComponent implements OnInit {
   title = 'fhir-app-test';
 
-  headers = ['ID' , 'name', 'gender', 'city', 'birthdate']
+  headers = ['ID' , 'last name', 'first name', 'gender']
 
-  rows = [
-    {
-      'ID' : '1',
-      'name' : 'deb',
-      'age' : '28',
-      'gender' : 'female',
-      'city' : 'toronto',
-      'birthdate' : '1992/05/27'
-    },
-    {
-      'ID' : '1',
-      'name' : 'deb',
-      'age' : '28',
-      'gender' : 'female',
-      'city' : 'toronto'
-    },
-    {
-      'ID' : '1',
-      'name' : 'deb',
-      'age' : '28',
-      'gender' : 'female',
-      'city' : 'toronto'
-    },
-    {
-      'ID' : '1',
-      'name' : 'deb',
-      'age' : '28',
-      'gender' : 'female',
-      'city' : 'toronto'
-    }
-  ]
+  items = []
 
   constructor(
     private apiService: ApiService
@@ -50,8 +20,15 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.apiService.getPatients().subscribe(
-      data => {
+      (data: any) => {
         console.log(data);
+        this.items = data.entry;
+        console.log(typeof this.items)
+
+        this.items.forEach(arr => {
+          console.log(arr);
+          return arr;
+        })
       }
     )
   }
