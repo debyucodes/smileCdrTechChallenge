@@ -16,6 +16,15 @@ export class ApiService {
       { headers: this.getHeaders() });
   }
 
+  getPerformance() {
+    const t0 = performance.now();
+    // page load??
+    const t1 = performance.now();
+    console.log(t1 - t0);
+    const time = t1 - t0;
+    return time;
+  }
+
   private getHeaders(): HttpHeaders {
     const headers = new HttpHeaders({
       'Content-Type': 'application/fhir+json'

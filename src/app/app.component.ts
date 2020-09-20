@@ -32,13 +32,11 @@ export class AppComponent implements OnInit {
 
         // this.items.sort((a,b) => a.resource.birthDate.rendered.localeCompare(b.resource.birthDate.rendered));
         // console.log(this.items.sort);
+        this.apiService.getPerformance();
       }
       )
     }
 
-    // function to sort the array
-    sortData() {
-      console.log('wtf');
-    }
+
 
 }
