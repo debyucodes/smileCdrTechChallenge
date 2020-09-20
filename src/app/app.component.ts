@@ -14,9 +14,22 @@ export class AppComponent implements OnInit {
 
   items = []
 
+  startTime! : number
+  initTime! : number
+  contentInitTime! : number
+  viewInitTime! : number
+
+  printTime(time : number) {
+    console.log(`Global loading ${ time }`);
+    console.log(`Component loading ${ time - this.startTime}`)
+  }
+
   constructor(
     private apiService: ApiService
-  ) { }
+  ) { 
+    this.startTime = window.performance.now();
+    this.printTime(this.startTime);
+  }
 
   ngOnInit() {
     this.apiService.getPatients().subscribe(
@@ -30,13 +43,22 @@ export class AppComponent implements OnInit {
           return arr;
         })
 
+        // SORTING?
         // this.items.sort((a,b) => a.resource.birthDate.rendered.localeCompare(b.resource.birthDate.rendered));
         // console.log(this.items.sort);
+
+        // PERFORMANCE tIME?
         this.apiService.getPerformance();
       }
       )
+
+      this.initTime = window.performance.now()
+      this.printTime(this.initTime)
     }
 
-
+    ngAfterContentInit() {
+      this.contentInitTime = window.performance.now()
+      this.printTime(this.contentInitTime)
+    }
 
 }
