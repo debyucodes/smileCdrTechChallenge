@@ -1,7 +1,28 @@
 h1 { 
-  color: red;
+  color: blue;
 }
 
 button {
   background-color: green;
+}
+
+.wrapper {
+  max-width: 1500px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+table {
+  border: 2px solid lightgrey;
+  padding: 20px;
+
+  th {
+    background: orange;
+  }
+ 
+  td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid orange;
+  }
 }

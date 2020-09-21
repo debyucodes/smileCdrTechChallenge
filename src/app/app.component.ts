@@ -1,4 +1,3 @@
-import { ApiSearch } from '../app/services/search.service';
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../app/services/api-service.service';
 
@@ -18,7 +17,6 @@ export class AppComponent implements OnInit {
   startTime! : number
   initTime! : number
   contentInitTime! : number
-  viewInitTime! : number
 
   printTime(time : number) {
     console.log(`Global loading ${ time }`);
@@ -35,8 +33,9 @@ export class AppComponent implements OnInit {
 
 
   constructor(
-    private apiService: ApiService
+    private apiService: ApiService,
   ) { 
+    // Recording the start time of load
     this.startTime = window.performance.now();
     this.printTime(this.startTime);
   }
@@ -46,7 +45,6 @@ export class AppComponent implements OnInit {
       (data: any) => {
         console.log(data);
         this.items = data.entry;
-        console.log(typeof this.items);
 
         this.items.forEach(arr => {
           console.log(arr.resource.id);
@@ -61,19 +59,40 @@ export class AppComponent implements OnInit {
             return -1
           }
         })
-
-      }
-      )
+      })
 
       // Record Initialize Time
       this.initTime = window.performance.now()
       this.printTime(this.initTime)
     }
 
-    // Record Content Rendered Time
-    ngAfterContentInit() {
-      this.contentInitTime = window.performance.now()
-      this.printTime(this.contentInitTime)
-    }
+  // Record Content Rendered Time
+  ngAfterContentInit() {
+    this.contentInitTime = window.performance.now()
+    this.printTime(this.contentInitTime)
+  }
 
+  onClick() {
+    this.apiService.getPatients().subscribe(
+      (data: any) => {
+        console.log(data);
+        this.items = data.entry;
+
+        this.items.forEach(arr => {
+          console.log(arr.resource.id);
+          return arr;
+        })
+
+        // Sorting by birthdate (youngest-oldest)
+        this.items.sort((a, b) => {
+          if (b.resource.birthDate > a.resource.birthDate) {
+            return 1
+          } else {
+            return -1
+          }
+        })
+      })
+  }
+
+// end of class
 }

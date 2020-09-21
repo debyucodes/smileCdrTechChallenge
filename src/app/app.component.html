@@ -1,39 +1,52 @@
 <p>check the console!</p>
 <h1>Test Test</h1>
 
-<form action="">
-  <label for="searchName">Search by name</label>
-  <input #box (keyup.enter)="onEnter(box.value)" type="text" name="searchName" id="searchName" pattern="^[A-Za-z]*$" placeholder="ex. Jane Doe">
-  <p>{{ value }}</p>
-</form>
-<button id="nameSubmit" type="submit" onclick="document.getElementById('nameSubmit').disabled = true;">Search!</button>
+<!-- Name search box -->
+<body>
+  <div class="wrapper">
+    
+    <form action="" id="nameForm">
+      <!-- <label for="searchName">Search by name</label>
+      <input #box (keyup.enter)="onEnter(box.value)" type="text" name="searchName" id="searchName" pattern="^[A-Za-z]*$" placeholder="ex. Jane Doe">
+      <p>{{ value }}</p> -->
+      <!-- <button id="nameSubmit" type="submit" onclick="document.getElementById('nameSubmit').disabled = true;">Search!</button> -->
 
-<form action="">
-  <label for="searchDate">Search by date</label>
-  <input type="date" name="searchDate" id="searchDate" pattern="([12]\d{3}/(0[1-9]|1[0-2])/(0[1-9]|[12]\d|3[01]))" placeholder="YYYY/MM/DD">
-</form>
-<button id="dateSubmit" onclick="document.getElementById('dateSubmit').disabled = true;">Search!</button>
+      
+      <button (click)="onClick()">search name!</button>
 
-<table>
-  <tr>
-    <th *ngFor = "let column of headers">
-      {{ column }}
-    </th>
-  </tr>
 
-  <tr *ngFor = "let arr of items">
-    <td>{{ arr.resource.id }}</td>
-    <td>{{ arr.resource.name[0].family }}</td>
-    <td>{{ arr.resource.name[0].given }}</td>
-    <td>{{ arr.resource.gender }}</td>
-    <td>{{ arr.resource.birthDate }}</td>
-  </tr>
-</table>
-
-<!-- REMEMBER TO ADD PIPE FORMATTING! -->
-<footer>
-  <h2>Global Loading Time: </h2>
-  <p>{{ globalLoading / 1000 }}s</p>
-  <h2>Request Loading Time:</h2>
-  <p>{{ requestLoading / 1000}}s</p>
-</footer>
+    </form>
+    
+    <!-- Birthdate search box -->
+    <form action="">
+      <label for="searchDate">Search by date</label>
+      <input type="date" name="searchDate" id="searchDate" pattern="([12]\d{3}/(0[1-9]|1[0-2])/(0[1-9]|[12]\d|3[01]))" placeholder="YYYY/MM/DD">
+      <button id="dateSubmit" onclick="document.getElementById('dateSubmit').disabled = true;">Search!</button>
+    </form>
+    
+    <!-- Table displaying data -->
+    <table>
+      <tr>
+        <th *ngFor = "let column of headers">
+          {{ column }}
+        </th>
+      </tr>
+    
+      <tr *ngFor = "let arr of items">
+        <td>{{ arr.resource.id }}</td>
+        <td>{{ arr.resource.name[0].family }}</td>
+        <td>{{ arr.resource.name[0].given }}</td>
+        <td>{{ arr.resource.gender }}</td>
+        <td>{{ arr.resource.birthDate | date: 'yyyy-MM-dd'}}</td>
+      </tr>
+    </table>
+    
+    <!-- REMEMBER TO ADD PIPE FORMATTING! -->
+    <footer>
+      <h2>Global Loading Time: </h2>
+      <p>{{ globalLoading / 1000 }}s</p>
+      <h2>Request Loading Time:</h2>
+      <p>{{ requestLoading / 1000 }}s</p>
+    </footer>
+  </div>
+</body>
