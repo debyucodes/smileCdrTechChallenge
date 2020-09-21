@@ -12,7 +12,8 @@ export class ApiService {
   ) { }
 
   getPatients() {
-    return this.httpClient.get(environment.queryURI + '/Patient',
+    // API link modified to fetch birthdate between 1960-1965
+    return this.httpClient.get(environment.queryURI + '/Patient/?birthdate=ge1960-01-01&birthdate=le1965-12-31',
       { headers: this.getHeaders() });
   }
 
@@ -23,6 +24,7 @@ export class ApiService {
     return headers;
   }
 
+  // Allow user to search by name 
   userSearch(userInput: string) {
     if (!userInput.trim()) {
       return ([]);
@@ -31,6 +33,7 @@ export class ApiService {
     return this.httpClient.get(environment.queryURI + '/Patient/?name=' + userInput)
   }
 
+  // Allow user to search by birthdate
   birthdateSearch(userBirthDate) {
     return this.httpClient.get(environment.queryURI + '/Patient/?birthdate=' + userBirthDate )
   }

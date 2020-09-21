@@ -53,9 +53,9 @@ export class AppComponent implements OnInit {
           return arr;
         })
 
-        // SORTING BY ID
+        // Sorting by birthdate (youngest-oldest)
         this.items.sort((a, b) => {
-          if (b.resource.id > a.resource.id) {
+          if (b.resource.birthDate > a.resource.birthDate) {
             return 1
           } else {
             return -1
