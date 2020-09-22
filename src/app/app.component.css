@@ -1,5 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap");
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+}
+
 button {
-  background-color: orange;
+  background-color: #F7B05B;
+  border: none;
+  padding: 5px;
+  margin-left: 10px;
 }
 
 .wrapper {
@@ -10,17 +19,29 @@ button {
 
 table {
   border: 2px solid lightgrey;
-  padding: 20px;
+  padding: 30px;
+  margin: 0 auto;
+  -webkit-box-shadow: 5px 5px 20px;
+          box-shadow: 5px 5px 20px;
+  position: relative;
+}
+
+table .loadingState {
+  position: absolute;
+  z-index: -1;
 }
 
 table th {
-  background: orange;
+  background: #F7B05B;
+  color: white;
 }
 
 table td {
   padding: 10px;
   text-align: center;
-  border-bottom: 1px solid orange;
+  border-bottom: 1px solid #F7B05B;
+  background-color: white;
+  z-index: 2;
 }
 
 .error {
@@ -30,6 +51,19 @@ table td {
   padding: 10px;
   border: 1px solid #fa5e5b;
   border-radius: 10px;
-  margin-top: 5px;
+  margin-top: 2px;
+}
+
+footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  background-color: #F7B05B;
+  color: white;
+  min-height: 10vh;
+  margin-top: 20px;
 }
 /*# sourceMappingURL=app.component.css.map */

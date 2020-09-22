@@ -51,6 +51,7 @@ export class AppComponent implements OnInit {
   onEnter(value: string) {
     this.value = value
 
+    this.clearTable();
     this.searchByName().subscribe(
       (data: any) => {
         console.log(data);
@@ -72,6 +73,11 @@ export class AppComponent implements OnInit {
       })
   }
 
+  // Clear table for better user experience
+  clearTable() {
+    this.items.length = 0
+  }
+
   // API CALL BASED ON NAME SEARCHED
   searchByName() {
     const name = this.value
@@ -87,8 +93,8 @@ export class AppComponent implements OnInit {
 
   // API CALL BASED ON NAME SEARCHED
   searchByDate() {
-    const date = this.date
-    return this.httpClient.get(environment.queryURI + '/Patient/?birthdate=' + date);
+    const inputDate = this.date
+    return this.httpClient.get(environment.queryURI + '/Patient/?birthdate=' + inputDate);
   }
 
   // INIT API CALL
