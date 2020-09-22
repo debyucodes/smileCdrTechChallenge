@@ -4,18 +4,23 @@
 <body>
   <div class="wrapper">
     <!-- Name search box -->
-    <form action="" id="nameForm">
-      <label for="searchName">Search by name</label>
-      <input #box (keyup.enter)="onEnter(box.value)" type="text" name="searchName" id="searchName" pattern="[A-Za-z]" placeholder="ex. Rebecca">
+    <form action="">
+      <label for="searchName">Search by name: </label>
+      <!-- <input #box (keyup.enter)="onEnter(box.value)" type="text" name="searchName" id="searchName" pattern="[A-Za-z]" placeholder="ex. Rebecca"> -->
+
+      <input required #box="ngModel" (keyup.enter)="onEnter(box.value)" type="text" ngModel name="nameInput" placeholder="ex. Rebecca" minlength="2" pattern="[A-Za-z]*">
       <button (click)="onEnter(box.value)" id="nameSubmit" type="submit" onclick="document.getElementById('nameSubmit').disabled = true;">Search!</button>
+      <div class="error" *ngIf="box.touched && !box.valid">
+        <div *ngIf="box.errors.required">Name is required.</div>
+        <div *ngIf="box.errors.minlength">Name must be minimum {{ box.errors.minlength.requiredLength }} characters.</div>
+        <div *ngIf="box.errors.pattern">Name must be alphabetical characters.</div>
+      </div>
       <p>Name searched: {{ value }}</p>
     </form>
-
-    <input type="text" name="searchName" id="searchName" pattern="[A-Za-z]" placeholder="ex. Rebecca">
     
     <!-- Birthdate search box -->
     <form action="">
-      <label for="searchDate">Search by birthdate</label>
+      <label for="searchDate">Search by birthdate: </label>
       <input #dateBox (keyup.enter)="onEnterDate(dateBox.date)" type="date" name="searchDate" id="searchDate" pattern="([12]\d{3}/(0[1-9]|1[0-2])/(0[1-9]|[12]\d|3[01]))" placeholder="YYYY/MM/DD">
       <button id="dateSubmit" onclick="document.getElementById('dateSubmit').disabled = true;">Search!</button>
       <p>{{ date }}</p>

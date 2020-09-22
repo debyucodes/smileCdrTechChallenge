@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { ApiService } from './services/api-service.service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,6 +17,7 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     RouterModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [
     ApiService

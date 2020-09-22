@@ -22,4 +22,14 @@ table td {
   text-align: center;
   border-bottom: 1px solid orange;
 }
+
+.error {
+  background-color: #fff3cd;
+  color: #fa5e5b;
+  width: 50%;
+  padding: 10px;
+  border: 1px solid #fa5e5b;
+  border-radius: 10px;
+  margin-top: 5px;
+}
 /*# sourceMappingURL=app.component.css.map */
