@@ -14,7 +14,7 @@
     <!-- Birthdate search box -->
     <form action="">
       <label for="searchDate">Search by birthdate</label>
-      <input #dateBox (keyup.enter)="onEnterDate(dateBox.date)" type="text" name="searchDate" id="searchDate" pattern="([12]\d{3}/(0[1-9]|1[0-2])/(0[1-9]|[12]\d|3[01]))" placeholder="YYYY/MM/DD">
+      <input #dateBox (keyup.enter)="onEnterDate(dateBox.date)" type="date" name="searchDate" id="searchDate" pattern="([12]\d{3}/(0[1-9]|1[0-2])/(0[1-9]|[12]\d|3[01]))" placeholder="YYYY/MM/DD">
       <button id="dateSubmit" onclick="document.getElementById('dateSubmit').disabled = true;">Search!</button>
       <p>{{ date }}</p>
     </form>
