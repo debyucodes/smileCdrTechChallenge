@@ -1,10 +1,10 @@
+import { Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../app/services/api-service.service';
 // import { Search } from '../app/services/search.service';
 
 import { HttpClient } from '@angular/common/http';
 import { environment } from './../environments/environment';
-import { TouchSequence } from 'selenium-webdriver';
 
 @Component({
   selector: 'app-root',
@@ -34,6 +34,7 @@ export class AppComponent implements OnInit {
   requestLoading: any = []
 
   value = ''
+  pattern: string | RegExp
   date = ''
 
   constructor(

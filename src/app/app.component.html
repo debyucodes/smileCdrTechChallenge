@@ -6,10 +6,12 @@
     <!-- Name search box -->
     <form action="" id="nameForm">
       <label for="searchName">Search by name</label>
-      <input #box (keyup.enter)="onEnter(box.value)" type="text" name="searchName" id="searchName" pattern="^[A-Za-z]*$" placeholder="ex. Rebecca">
+      <input #box (keyup.enter)="onEnter(box.value)" type="text" name="searchName" id="searchName" pattern="[A-Za-z]" placeholder="ex. Rebecca">
       <button (click)="onEnter(box.value)" id="nameSubmit" type="submit" onclick="document.getElementById('nameSubmit').disabled = true;">Search!</button>
       <p>Name searched: {{ value }}</p>
     </form>
+
+    <input type="text" name="searchName" id="searchName" pattern="[A-Za-z]" placeholder="ex. Rebecca">
     
     <!-- Birthdate search box -->
     <form action="">
