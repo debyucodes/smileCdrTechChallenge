@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../app/services/api-service.service';
-import { Search } from '../app/services/search.service';
+// import { Search } from '../app/services/search.service';
+
+// making API call from app directly
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from './../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -33,7 +37,8 @@ export class AppComponent implements OnInit {
 
   constructor(
     private apiService: ApiService,
-    private search: Search,
+    private httpClient: HttpClient,
+    // private search: Search,
   ) { 
     // Recording the start time of load
     this.startTime = window.performance.now();
@@ -42,12 +47,9 @@ export class AppComponent implements OnInit {
 
 
   onEnter(value: string) {
-    // cannot pass value into service properly
-    console.log(this.value);
-    
     this.value = value
 
-    this.search.searchByName().subscribe(
+    this.searchByName().subscribe(
       (data: any) => {
         console.log(data);
         this.items = data.entry;
@@ -68,6 +70,12 @@ export class AppComponent implements OnInit {
       })
   }
 
+  // API call to fetch data based on user input for name search
+  searchByName() {
+    const name = this.value
+    
+    return this.httpClient.get(environment.queryURI + '/Patient/?name=' + name);
+  }
 
 
   ngOnInit() {

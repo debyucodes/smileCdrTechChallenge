@@ -4,12 +4,13 @@ import { environment } from '../../environments/environment';
 import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 import { stringify } from 'querystring';
 
+// IDEALLY would like to fetch data from service
 @Injectable({
   providedIn: 'root'
 })
 export class Search {
   //not sure why value is passing as empty string from parent...
-  // @Input() value;
+  // @Input() value = 'rebecca;
   @Input() value;
 
   constructor(
