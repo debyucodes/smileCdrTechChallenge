@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../app/services/api-service.service';
 // import { Search } from '../app/services/search.service';
 
-// making API call from app directly
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from './../environments/environment';
+import { TouchSequence } from 'selenium-webdriver';
 
 @Component({
   selector: 'app-root',
@@ -34,18 +34,19 @@ export class AppComponent implements OnInit {
   requestLoading: any = []
 
   value = ''
+  date = ''
 
   constructor(
     private apiService: ApiService,
     private httpClient: HttpClient,
     // private search: Search,
   ) { 
-    // Recording the start time of load
+    // RECORDING START OF LOAD
     this.startTime = window.performance.now();
     this.printTime(this.startTime);
   }
 
-
+  // SEARCH BY NAME
   onEnter(value: string) {
     this.value = value
 
@@ -59,7 +60,7 @@ export class AppComponent implements OnInit {
           return arr;
         })
 
-        // Sorting by birthdate (youngest-oldest)
+        // SORT BY BIRTHDATE (YOUNGEST-OLDEST)
         this.items.sort((a, b) => {
           if (b.resource.birthDate > a.resource.birthDate) {
             return 1
@@ -70,14 +71,26 @@ export class AppComponent implements OnInit {
       })
   }
 
-  // API call to fetch data based on user input for name search
+  // API CALL BASED ON NAME SEARCHED
   searchByName() {
     const name = this.value
-    
     return this.httpClient.get(environment.queryURI + '/Patient/?name=' + name);
   }
 
+  // SEARCH BY DATE
+  onEnterDate(date: string) {
+    this.date = date
+    console.log(this.date);
+    console.log('hohoho')
+  }
 
+  // API CALL BASED ON NAME SEARCHED
+  searchByDate() {
+    const date = this.date
+    return this.httpClient.get(environment.queryURI + '/Patient/?birthdate=' + date);
+  }
+
+  // INIT API CALL
   ngOnInit() {
     this.apiService.getPatients().subscribe(
       (data: any) => {
@@ -89,7 +102,7 @@ export class AppComponent implements OnInit {
           return arr;
         })
 
-        // Sorting by birthdate (youngest-oldest)
+        // SORT BY BIRTHDATE (YOUNGES-OLDEST)
         this.items.sort((a, b) => {
           if (b.resource.birthDate > a.resource.birthDate) {
             return 1
@@ -99,16 +112,15 @@ export class AppComponent implements OnInit {
         })
       })
 
-      // Record Initialize Time
+      // RECORD INIT TIME
       this.initTime = window.performance.now()
       this.printTime(this.initTime)
     }
 
-  // Record Content Rendered Time
+  // RECORD RENDERED TIME
   ngAfterContentInit() {
     this.contentInitTime = window.performance.now()
     this.printTime(this.contentInitTime)
   }
-
-// end of class
+// END OF CLASS
 }
