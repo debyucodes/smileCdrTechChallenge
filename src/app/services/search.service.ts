@@ -1,20 +1,26 @@
-import { Injectable } from '@angular/core';
+import { Injectable , Input } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { ValueConverter } from '@angular/compiler/src/render3/view/template';
+import { stringify } from 'querystring';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ApiService {
+export class Search {
+  //not sure why value is passing as empty string from parent...
+  // @Input() value;
+  @Input() value;
+
   constructor(
     private httpClient: HttpClient
-  ) { }
+  ) {}
 
-  getPatients() {
+  searchByName() {
     // API link modified to fetch birthdate between 1960-1965
-    const yearFilter = '?birthdate=ge1960-01-01&birthdate=le1965-12-31'
+    const name = this.value
     
-    return this.httpClient.get(environment.queryURI + '/Patient/' + yearFilter,
+    return this.httpClient.get(environment.queryURI + '/Patient/?name=' + name,
       { headers: this.getHeaders() });
   }
 
@@ -24,11 +30,4 @@ export class ApiService {
     });
     return headers;
   }
-
-  // API call to search by birthdate
-  // birthdateSearch(userBirthDate) {
-  //   return this.httpClient.get(environment.queryURI + '/Patient/?birthdate=' + userBirthDate )
-  // }
 }
-
-

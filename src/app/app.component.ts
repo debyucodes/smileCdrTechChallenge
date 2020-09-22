@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../app/services/api-service.service';
+import { Search } from '../app/services/search.service';
 
 @Component({
   selector: 'app-root',
@@ -29,16 +30,45 @@ export class AppComponent implements OnInit {
   requestLoading: any = []
 
   value = ''
-  onEnter(value: string) {this.value = value}
-
 
   constructor(
     private apiService: ApiService,
+    private search: Search,
   ) { 
     // Recording the start time of load
     this.startTime = window.performance.now();
     this.printTime(this.startTime);
   }
+
+
+  onEnter(value: string) {
+    // cannot pass value into service properly
+    console.log(this.value);
+    
+    this.value = value
+
+    this.search.searchByName().subscribe(
+      (data: any) => {
+        console.log(data);
+        this.items = data.entry;
+
+        this.items.forEach(arr => {
+          console.log(arr.resource.id);
+          return arr;
+        })
+
+        // Sorting by birthdate (youngest-oldest)
+        this.items.sort((a, b) => {
+          if (b.resource.birthDate > a.resource.birthDate) {
+            return 1
+          } else {
+            return -1
+          }
+        })
+      })
+  }
+
+
 
   ngOnInit() {
     this.apiService.getPatients().subscribe(
@@ -70,28 +100,6 @@ export class AppComponent implements OnInit {
   ngAfterContentInit() {
     this.contentInitTime = window.performance.now()
     this.printTime(this.contentInitTime)
-  }
-
-  onClick() {
-    this.apiService.getPatients().subscribe(
-      (data: any) => {
-        console.log(data);
-        this.items = data.entry;
-
-        this.items.forEach(arr => {
-          console.log(arr.resource.id);
-          return arr;
-        })
-
-        // Sorting by birthdate (youngest-oldest)
-        this.items.sort((a, b) => {
-          if (b.resource.birthDate > a.resource.birthDate) {
-            return 1
-          } else {
-            return -1
-          }
-        })
-      })
   }
 
 // end of class

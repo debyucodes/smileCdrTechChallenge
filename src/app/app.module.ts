@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { ApiService } from './services/api-service.service';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { ApiService } from './services/api-service.service';
     BrowserModule,
     HttpClientModule,
     RouterModule,
+    FormsModule,
   ],
   providers: [
     ApiService
